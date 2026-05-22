@@ -14,6 +14,10 @@ import { TodoListComponent } from './components/todo-list/todo-list.component';
 import { HttpClientModule } from "@angular/common/http";
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
+import { FormsModule } from '@angular/forms';
+
 
 
 
@@ -37,7 +41,9 @@ import { MatIconModule } from '@angular/material/icon';
     BrowserAnimationsModule,
     MatButtonModule,
     HttpClientModule,
-    MatIconModule
+    MatIconModule,
+    FormsModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Itodo } from "../models/todos";
+import { Itodo, ItodosRes } from "../models/todos";
 import { HttpClient } from "@angular/common/http";
 import { Observable, of } from "rxjs";
 
@@ -72,7 +72,17 @@ fetchUserId():Observable<number>{
 //get single todo 
 
 // add new todo  
+  addTodo(todo:Itodo):Observable<ItodosRes>{
+    // API call to add new data in DB
+     this.todosArr.push(todo)
 
+     let res ={
+      msg : `New todo item with id ${todo.todoId} create successfully`,
+      data : todo
+     }
+     return of(res)
+
+  }
 // remove todo
 
 // update todo

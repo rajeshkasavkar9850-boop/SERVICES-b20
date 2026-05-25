@@ -17,6 +17,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { FormsModule } from '@angular/forms';
+import { GetConfirmComponent } from './components/get-confirm/get-confirm.component';
+import { StudentDashboardComponent } from './components/student-dashboard/student-dashboard.component';
+import { StudentFormComponent } from './components/student-form/student-form.component';
+import { StudentTableComponent } from './components/student-table/student-table.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 
@@ -33,6 +38,10 @@ import { FormsModule } from '@angular/forms';
     TodoDashboardComponent,
     TodoFormComponent,
     TodoListComponent,
+    GetConfirmComponent,
+    StudentDashboardComponent,
+    StudentFormComponent,
+    StudentTableComponent,
     
   ],
   imports: [
@@ -43,7 +52,8 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     MatIconModule,
     FormsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

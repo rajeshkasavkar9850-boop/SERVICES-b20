@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Itodo, ItodosRes } from "../models/todos";
+import { IRes, Itodo, ItodosRes } from "../models/todos";
 import { HttpClient } from "@angular/common/http";
 import { Observable, of } from "rxjs";
 
@@ -8,6 +8,9 @@ import { Observable, of } from "rxjs";
 })
 
 export class TodosService {
+  // addTodo(New_TODO: Itodo) {
+  //   throw new Error('Method not implemented.');
+  // }
   todosArr:Array<Itodo> = [
   {
     todoId: '101',
@@ -62,29 +65,34 @@ fetchTodos():Observable<Itodo[]>{
     return of (this.todosArr)
 }
 
-fetchMsg():Observable<string>{
-    return of ('Hello Angular')
-}
+// fetchMsg():Observable<string>{
+//     return of ('Hello Angular')
+// }
 
-fetchUserId():Observable<number>{
-    return of (125)
-}
+// fetchUserId():Observable<number>{
+//     return of (125)
+// }
 //get single todo 
 
 // add new todo  
-  addTodo(todo:Itodo):Observable<ItodosRes>{
-    // API call to add new data in DB
-     this.todosArr.push(todo)
-
-     let res ={
-      msg : `New todo item with id ${todo.todoId} create successfully`,
-      data : todo
-     }
-     return of(res)
-
-  }
+addTodo(todo:Itodo): Observable<ItodosRes>{
+this.todosArr.push(todo)
+let res = {
+  msg : `New todo item with id ${todo.todoId} created successfully`,
+  data : todo
+}
+return of (res)
+}
 // remove todo
+ removeTodo(id: string): Observable<IRes<Itodo>> {
+        let GET_INDEX = this.todosArr.findIndex(t => t.todoId === id)
+        let RemoveTodo = this.todosArr.splice(GET_INDEX, 1);
 
+        return of({
+            msg: `The Todo Item With ${id} is removed Successfully !!!`,
+            data: RemoveTodo[0]
+        })
+    }
 // update todo
 
 

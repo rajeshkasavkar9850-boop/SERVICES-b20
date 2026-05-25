@@ -18,11 +18,24 @@
             class="w-100" type="submit"
             mat-raised-button color="primary">Add Todo</button>
 
-            <button *ngIf="isInEditMode"
+            <button [disabled]="todoForm.invalid"
+            *ngIf="isInEditMode"
              class="w-100" type="button"
             mat-raised-button color="primary">Update Todo</button>
         </form>
     </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
 

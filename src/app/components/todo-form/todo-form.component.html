@@ -3,7 +3,7 @@
 <div class="card mb-4 mb-md-0">
     <div class="card-body">
         <h2>{{isInEditMode ? 'Update Todo' : 'Add Todo'}}</h2>
-        <form #todoForm="ngForm" (ngSubmit)="onTodoSubmit()">
+        <form #todoForm="ngForm" (ngSubmit)="isInEditMode ? onUpdate() : onTodoSubmit()">
             <div class="form-group mb-3">
                 <label for="todoItem">Todo Item</label>
                 <input
@@ -19,8 +19,9 @@
             mat-raised-button color="primary">Add Todo</button>
 
             <button [disabled]="todoForm.invalid"
+            (click)="onUpdate()"
             *ngIf="isInEditMode"
-             class="w-100" type="button"
+             class="w-100" type="submit"
             mat-raised-button color="primary">Update Todo</button>
         </form>
     </div>

@@ -11,7 +11,7 @@ import { TodosService } from 'src/app/services/todo.service';
 })
 export class TodoFormComponent implements OnInit {
 isInEditMode : boolean = false
-
+editTodo ! : Itodo
 @ViewChild('todoForm') todoForm !: NgForm
   constructor(
     private _todosService : TodosService,
@@ -19,6 +19,7 @@ isInEditMode : boolean = false
   ) { }
 
   ngOnInit(): void {
+    this.onTodoPatch()
   }
 
   // onTodoSubmit(todoForm: NgForm){
@@ -38,7 +39,6 @@ isInEditMode : boolean = false
      this._todosService.addTodo(New_TODO)
          .subscribe({
           next : data =>{
-            console.log(data)
             this._snackBar.openSnackBar(data.msg)
           },
           error : err => {
@@ -46,5 +46,38 @@ isInEditMode : boolean = false
           }
          })
     }
+  }
+
+  onTodoPatch(){
+    this._todosService.editTodoSub$.subscribe({
+      next : data =>{
+        console.log(data);
+         this.editTodo = data; 
+        this.isInEditMode = true;
+        this.todoForm.form.patchValue(data)
+      }
+    })
+  }
+
+  onUpdate(){
+  if(this.todoForm.valid){
+    let UPDATED_OBJ:Itodo = {
+      ...this.todoForm.value,
+      todoId : this.editTodo.todoId
+    }
+    console.log(UPDATED_OBJ);
+    //API call 
+    this._todosService.updateTodo(UPDATED_OBJ)
+    .subscribe({
+      next : res => {
+       this._snackBar.openSnackBar(res.msg)
+       this.todoForm.reset()
+       this.isInEditMode = false;
+      },
+      error : err => {
+        this._snackBar.openSnackBar(err)
+      }
+    })
+  }
   }
 }

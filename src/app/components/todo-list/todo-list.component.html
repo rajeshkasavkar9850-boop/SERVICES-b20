@@ -7,7 +7,8 @@
         <strong>{{todo.todoItem}}</strong>
 
         <div>
-            <button class="me-2" mat-mini-fab color="primary">
+            <button (click)="onTodoEdit(todo)"
+             class="me-2" mat-mini-fab color="primary">
                 <mat-icon>edit</mat-icon>
             </button>
 

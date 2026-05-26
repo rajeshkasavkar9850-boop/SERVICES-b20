@@ -14,7 +14,7 @@ data ! : string
      @Inject(MAT_DIALOG_DATA) data : string,
     private _matDialogRef : MatDialogRef<GetConfirmComponent>
   ) { 
-     this.msg = data
+     this.msg = data 
   }
 
   ngOnInit(): void {

@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { IRes, Itodo, ItodosRes } from "../models/todos";
 import { HttpClient } from "@angular/common/http";
-import { Observable, of } from "rxjs";
+import { Observable, of, Subject } from "rxjs";
 
 @Injectable({
     providedIn : 'root'
@@ -54,6 +54,8 @@ export class TodosService {
   }
 ];
 
+editTodoSub$ : Subject<Itodo> = new Subject<Itodo>()
+
 //Module >> httpModule >> GET , POST, PATCH, PUT, DELETE >> Return Observable
 constructor(private _http :HttpClient){}
 // multiple todos
@@ -94,6 +96,14 @@ return of (res)
         })
     }
 // update todo
+updateTodo(updatedTodo:Itodo):Observable<ItodosRes>{
+ let GET_INDEX = this.todosArr.findIndex(t => t.todoId === updatedTodo.todoId)
+ this.todosArr[GET_INDEX] = updatedTodo
 
+  return of({
+    msg : `The todo item with id ${updatedTodo.todoId} is updated successfully!!!`,
+    data : updatedTodo
+  })
+}
 
 }
